@@ -1,4 +1,4 @@
-import { Box, Button, Icon, Input, Text } from "@chakra-ui/react";
+import { Box, Button, Input, Text } from "@chakra-ui/react";
 import React from "react";
 import Header from "../../components/Header";
 import { BiSearch } from 'react-icons/bi';
