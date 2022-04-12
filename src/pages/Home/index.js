@@ -3,6 +3,7 @@ import React from "react";
 import Header from "../../components/Header";
 import { BiSearch } from 'react-icons/bi';
 import { UseColorMode } from "../../useDarkMode";
+import NotFound from "../NotFound";
 
 
 const Home = () => {
@@ -31,7 +32,9 @@ const Home = () => {
                     </Box>}
                  />
                  {/*  */}
-                 
+                 <Box mt="60px">
+                    <NotFound />
+                 </Box>
             </Box>
         </React.Fragment>
     )
