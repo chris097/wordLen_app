@@ -8,9 +8,9 @@ const HomeComp = ({bg, data}) => {
         <Box mb="114.5px" h="auto" border="1px solid #E5E5E5">
             <Box bg={bg} my="44px" mx="74px" px={10} pb={4}>
                 {/*  */}
-                {data?.map(word => (
+                {data?.map((word, index) => (
                     <>
-                    <Box>
+                    <Box key={index}>
                         <Text textTransform="capitalize" fontSize="64px">{word?.word}</Text>
                         <Box d="flex" alignItems="center">
                             <Text>/həˈləʊ/</Text>

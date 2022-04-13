@@ -13,9 +13,10 @@ import { useSelector } from "react-redux";
 
 const Home = () => {
 
-    const word = useSelector((state) => state.useReducer);
-    const {data, isLoading, isError} = useFetchApi(word.word)
-    console.log(data?.map(word => word?.word));
+    const initialState = useSelector((state) => state.wordReducer);
+    const {data, isLoading, isError} = useFetchApi(initialState.word)
+    console.log(data);
+
 
     return(
         <React.Fragment>
