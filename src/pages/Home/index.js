@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import Header from "../../components/Header";
 import { UseColorMode } from "../../useDarkMode";
 import NotFound from "../NotFound";
@@ -17,6 +17,8 @@ const Home = () => {
     const {data, isLoading, isError} = useFetchApi(initialState.word)
     console.log(data);
 
+    const [word, setWord] = useState(initialState.word)
+
 
     return(
         <React.Fragment>
@@ -25,18 +27,18 @@ const Home = () => {
             {/* Banner components */}
             <Box maxW='80%' mx='auto'>
                 <UseColorMode 
-                    light={<Banner textColor="#0B0A1B" searchColor="#BEC8DA" borderColor="#E9ECF0" />} 
-                    dark={<Banner textColor="#91A2CB" borderColor="#122239" placeholderColor="#8C98AD" />}
+                    light={<Banner word={word} setWord={setWord} textColor="#0B0A1B" searchColor="#BEC8DA" borderColor="#E9ECF0" />} 
+                    dark={<Banner word={word} setWord={setWord} textColor="#91A2CB" borderColor="#122239" placeholderColor="#8C98AD" />}
                 />
                  {/*  */}
-                 <Box mt="60px">
+                 {!data ? <Skeleton /> : <Box mt="60px">
                     {isError && <NotFound /> }
                     {isLoading && <Skeleton /> }
                     <UseColorMode 
                         light={<HomeComp data={data} bg="#FCFCFC" />} 
                         dark={<HomeComp data={data} bg="#0D1726" />} 
                     />
-                 </Box>
+                 </Box>}
             </Box>
             <Footer />
         </React.Fragment>
