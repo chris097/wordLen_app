@@ -28,14 +28,14 @@ const Home = () => {
                     dark={<Banner word={word} setWord={setWord} textColor="#91A2CB" borderColor="#122239" placeholderColor="#8C98AD" />}
                 />
                  {/*  */}
-                 {!data ? <Skeleton /> : <Box mt="60px">
-                    {isError && <NotFound /> }
-                    {isLoading && <Skeleton /> }
-                    <UseColorMode 
-                        light={<HomeComp data={data} bg="#FCFCFC" />} 
-                        dark={<HomeComp data={data} bg="#0D1726" />} 
-                    />
-                 </Box>}
+                 {isLoading || !data ? <Skeleton /> : (isError ? <NotFound /> : 
+                    <Box mt="60px">
+                        <UseColorMode 
+                            light={<HomeComp data={data} bg="#FCFCFC" />} 
+                            dark={<HomeComp data={data} bg="#0D1726" />} 
+                        />
+                    </Box>
+                 )}
             </Box>
             <Footer />
         </React.Fragment>
