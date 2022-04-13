@@ -16,6 +16,7 @@ const Home = () => {
     const initialState = useSelector((state) => state.wordReducer);
     const {data, isLoading, isError} = useFetchApi(initialState.word)
     const [word, setWord] = useState(initialState.word)
+    console.log(data)
 
     return(
         <React.Fragment>
@@ -28,7 +29,7 @@ const Home = () => {
                     dark={<Banner word={word} setWord={setWord} textColor="#91A2CB" borderColor="#122239" placeholderColor="#8C98AD" />}
                 />
                  {/*  */}
-                 {isLoading || !data ? <Skeleton /> : (isError ? <NotFound /> : 
+                 {isLoading ? <Skeleton /> : (isError ? <NotFound /> : 
                     <Box mt="60px">
                         <UseColorMode 
                             light={<HomeComp data={data} bg="#FCFCFC" />} 
