@@ -19,7 +19,7 @@ const Banner = ({textColor, searchColor, borderColor, placeholderColor, word, se
                 }}>
                 <Box d="flex" border={`1px solid ${borderColor}`} pl={4} pr={1} h="65px" alignItems="center" mt='53px'>
                     <BiSearch color={searchColor} fontSize={24} />
-                    <Input onChange={(e) => setWord(e.target.value)} _focus={{border: "#fff"}} border="none" _placeholder={{color: `${placeholderColor}`}} placeholder="What would you like to search for?" />
+                    <Input onChange={(e) => setWord(e.target.value)} _focus={{border: "#fff"}} border="none" _placeholder={{color: `${placeholderColor}`}} placeholder="What would you like to search for? eg hello" />
                     <Button type="submit" _focus={{border: "#fff"}} _hover={{opacity: .8}} bgColor="#000" w="123px" h="54px" color="#fff">Search</Button>
                 </Box>
             </form>

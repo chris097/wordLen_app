@@ -15,10 +15,7 @@ const Home = () => {
 
     const initialState = useSelector((state) => state.wordReducer);
     const {data, isLoading, isError} = useFetchApi(initialState.word)
-    console.log(data);
-
     const [word, setWord] = useState(initialState.word)
-
 
     return(
         <React.Fragment>
