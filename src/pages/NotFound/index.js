@@ -4,7 +4,7 @@ import { UseColorMode } from '../../useDarkMode';
 
 const NotFound = () => {
   return (
-    <Flex justifyContent='center' mt={20}>
+    <Flex justifyContent='center' mt={20} mb="335.5px">
       <Box>
           <UseColorMode light={
               <>

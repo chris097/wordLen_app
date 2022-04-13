@@ -1,12 +1,22 @@
-import { Box, Button, Input, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import React from "react";
 import Header from "../../components/Header";
-import { BiSearch } from 'react-icons/bi';
 import { UseColorMode } from "../../useDarkMode";
 import NotFound from "../NotFound";
+import Footer from "../../components/Footer";
+import Skeleton from "../Skeleton";
+import HomeComp from "./HomeComp";
+import Banner from "../../components/Banner";
+import { useFetchApi } from "../../services/fectchApi";
+import { useSelector } from "react-redux";
 
 
 const Home = () => {
+
+    const word = useSelector((state) => state.useReducer);
+    const {data, isLoading, isError} = useFetchApi(word.word)
+    console.log(data?.map(word => word?.word));
+
     return(
         <React.Fragment>
             {/* Header components */}
@@ -14,28 +24,20 @@ const Home = () => {
             {/* Banner components */}
             <Box maxW='80%' mx='auto'>
                 <UseColorMode 
-                    light={<Text mt={{base:"80px", md:"100px" }} fontWeight={600} lineHeight='1.4' color='#0B0A1B'  fontSize={{base: "44px", sm: "70px", md: "98px"}}>
-                    Search <br /> for any word.</Text>}
-                    dark={<Text mt={{base:"80px", md:"100px" }} fontWeight={600} lineHeight='1.4' color='#91A2CB' fontSize={{base: "44px", sm: "70px", md: "98px"}}>
-                    Search <br /> for any word.</Text>}
-                 />
-                 <UseColorMode 
-                    light={<Box d="flex" border="1px solid #E9ECF0" pl={4} pr={1} h="65px" alignItems="center" mt='53px'>
-                    <BiSearch color="#BEC8DA" fontSize={24} />
-                    <Input border="none" placeholder="What would you like to search for?" />
-                    <Button _focus={{border: "#fff"}} _hover={{opacity: .8}} bgColor="#000" w="123px" h="54px" color="#fff">Search</Button>
-                    </Box>}
-                    dark={<Box d="flex" border="1px solid #122239" pl={4} pr={1} h="65px" alignItems="center" mt='53px'>
-                        <BiSearch color="#BEC8DA" fontSize={24} />
-                    <Input border="none" placeholder="What would you like to search for?" _placeholder={{color: "#8C98AD"}} />
-                    <Button _focus={{border: "#fff"}} bgColor="#000" w="123px" h="54px" color="#fff">Search</Button>
-                    </Box>}
-                 />
+                    light={<Banner textColor="#0B0A1B" searchColor="#BEC8DA" borderColor="#E9ECF0" />} 
+                    dark={<Banner textColor="#91A2CB" borderColor="#122239" placeholderColor="#8C98AD" />}
+                />
                  {/*  */}
                  <Box mt="60px">
-                    <NotFound />
+                    {isError && <NotFound /> }
+                    {isLoading && <Skeleton /> }
+                    <UseColorMode 
+                        light={<HomeComp data={data} bg="#FCFCFC" />} 
+                        dark={<HomeComp data={data} bg="#0D1726" />} 
+                    />
                  </Box>
             </Box>
+            <Footer />
         </React.Fragment>
     )
 }
