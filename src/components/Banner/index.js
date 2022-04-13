@@ -1,8 +1,7 @@
 import React from "react";
 import { Box, Button, Input, Text } from "@chakra-ui/react";
 import { BiSearch } from 'react-icons/bi';
-import { useSelector } from "react-redux";
-import { useFetchApi } from "../../services/fectchApi";
+
 
 const Banner = ({textColor, searchColor, borderColor, placeholderColor}) => {
 
