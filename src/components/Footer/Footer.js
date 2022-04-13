@@ -1,23 +1,29 @@
 import { Box, HStack, Image, Text } from "@chakra-ui/react";
 import React from "react";
 import logo from '../../public/svgs/logo.svg';
+import darkLogo from "../../public/svgs/dark_logo.svg";
 import {BsFacebook, BsTwitter, BsGithub, BsLinkedin} from 'react-icons/bs';
+import { UseColorMode } from '../../useDarkMode';
 
 const FooterComp = ({bgColor, borderColor}) => {
     return(
         <React.Fragment>
             <Box bgColor={bgColor} pb={16} borderTop={`1px solid ${borderColor}`}>
-                 <Box w="full" pos="absolute" mt="92px">
-                    <Box w="30%" pos="relative" textAlign="center" mx="auto">
-                        <Text fontSize="96px">Wordlens</Text>
-                        <Text fontSize={14} ml="20px" textAlign="start">The API used to serve this data was provided by dictionaryapi.dev, click on the link below to read more</Text>
-                        <Box d="flex" mt="21px" ml="20px" alignItems="center" pl={2} w="220px" h="48px" border="2px solid #000" rounded="50px" fontSize={14}>
+                <Box w="full" pos={{base:"relative", md:"absolute"}} mt="92px">
+                    <Box w={{base: "80%", md:"30%"}} pos="relative" textAlign="center" mx="auto">
+                        <Text d={{base: "none", md:"block"}} fontSize="96px">Wordlens</Text>
+                        <UseColorMode 
+                            light={<Image mx="auto" mb="10px" d={{base: "block", md:"none"}} src={logo} alt="logo" />}
+                            dark={<Image mx="auto" mb="10px" d={{base: "block", md:"none"}} src={darkLogo} alt="logo" />}
+                        />
+                        <Text fontSize={14} ml={{base:0, md:"20px"}} textAlign={{base: "block", md:"start"}}>The API used to serve this data was provided by dictionaryapi.dev, click on the link below to read more</Text>
+                        <Box d="flex" mx="auto" mt="21px" ml={{base:0, md:"20px"}} alignItems="center" pl={2} w={{base: "full", md:"220px"}} h="48px" border="2px solid #000" rounded="50px" fontSize={14}>
                             <Text textAlign="center">Visit API documentation</Text>
                         </Box>
                     </Box>
                 </Box>
                 <Box maxW="90%" mx="auto">
-                    <Box d="flex" justifyContent="space-between">
+                    <Box d={{base: "none", md:"flex"}} justifyContent="space-between">
                         <span>
                             <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M99.5 64.6446C99.5 83.8946 83.8947 99.4999 64.6446 99.4999C45.3946 99.4999 29.7893 83.8946 29.7893 64.6446C29.7893 45.3945 45.3946 29.7892 64.6446 29.7892C83.8947 29.7892 99.5 45.3945 99.5 64.6446Z" stroke="#616681"/>
@@ -38,7 +44,7 @@ const FooterComp = ({bgColor, borderColor}) => {
                             </svg>
                         </span>
                     </Box>
-                    <Box mt={6} mx={24} d="flex" justifyContent="space-between">
+                    <Box mt={6} mx={24} d={{base: "none", md:"flex"}} justifyContent="space-between">
                     <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <mask id="path-1-inside-1_376_18" fill="white">
                         <path fillRule="evenodd" clipRule="evenodd" d="M67.2837 63.3554C67.2837 82.8816 81.354 98.7107 98.7106 98.7107V28C81.354 28.0001 67.2837 43.8292 67.2837 63.3554Z"/>
@@ -87,15 +93,15 @@ const FooterComp = ({bgColor, borderColor}) => {
                             </svg>
                         </span>
                     </Box>
-                    <Box mt="50.5px" d="flex" justifyContent="space-between">
-                        <Image src={logo} alt="logo" />
-                        <HStack spacing={6}>
+                    <Box mt="50.5px" d={{base: "block", md:"flex"}} w="90%" mx="auto" justifyContent="space-between">
+                        <Image d={{base: "none", md:"block"}} src={logo} alt="logo" />
+                        <HStack spacing={8} justifyContent="center">
                             <BsFacebook />
                             <BsTwitter />
                             <BsGithub />
                             <BsLinkedin />
                         </HStack>
-                        <Box d="flex" fontSize={14}>
+                        <Box d={{base: "none", md:"flex"}}fontSize={14}>
                             <Box mr={16}>Term use of.</Box>
                             <Box>Privacy Policy</Box>
                         </Box>
