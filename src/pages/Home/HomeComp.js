@@ -6,12 +6,12 @@ const HomeComp = ({bg, data}) => {
 
     return(
         <Box mb="114.5px" h="auto" border="1px solid #E5E5E5">
-            <Box bg={bg} my="44px" mx="74px" px={10} pb={4}>
+            <Box bg={bg} my="44px" mx={{base:"20px", md:"74px"}} px={{base:5, md:10}} pb={4}>
                 {/*  */}
                 {data?.map((word, index) => (
                     <>
                     <Box key={index}>
-                        <Text textTransform="capitalize" fontSize="64px">{word?.word}</Text>
+                        <Text textTransform="capitalize" fontSize={{base:"34px", md:"64px"}}>{word?.word}</Text>
                         <Box d="flex" alignItems="center">
                             <Text>/həˈləʊ/</Text>
                             <Box ml="18px" cursor="pointer">
@@ -22,22 +22,14 @@ const HomeComp = ({bg, data}) => {
                         </Box>
                     </Box>
                     <Box mt="31px" mb="55px">
-                        <Text>origin: "early 19th century: variant of earlier hollo ; related to holla.",</Text>
+                        <Text fontSize={{base:"14px", md:"16px"}}>origin: "early 19th century: variant of earlier hollo ; related to holla.",</Text>
                     </Box>
-                    <Box mb="46px">
-                        <Text>1. (exclamation) used as a greeting or to begin a phone conversation.</Text>
+                    <Box mb="46px" fontSize={{base:"14px", md:"16px"}}>
+                    {word?.meanings?.map((meaning) => meaning.definitions?.map((definition, index) => 
+                        <Text mb={3}>{index+1}. {definition.definition}</Text>
+                    ))}
                         <Text color="#8C98AD">sentence: “hello there, Katie!"</Text>
-                        <Text>Synonyms: “”</Text>
-                    </Box>
-                    <Box mb="46px">
-                        <Text>1. (exclamation) used as a greeting or to begin a phone conversation.</Text>
-                        <Text color="#8C98AD">sentence: “hello there, Katie!"</Text>
-                        <Text>Synonyms: “”</Text>
-                    </Box>
-                    <Box mb="46px">
-                        <Text>1. (exclamation) used as a greeting or to begin a phone conversation.</Text>
-                        <Text color="#8C98AD">sentence: “hello there, Katie!"</Text>
-                        <Text>Synonyms: “”</Text>
+                        <Text fontStyle="italic">Synonyms: "{word?.meanings?.map(meaning => meaning.synonyms)}"</Text>
                     </Box>
                 </>
                 ))

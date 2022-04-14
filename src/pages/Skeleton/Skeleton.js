@@ -3,10 +3,10 @@ import { Box, Skeleton, Stack } from '@chakra-ui/react';
 
 const SkeletonComp = ({bg}) => {
   return (
-    <Box h='auto' bg={bg} m={14} p={10}>
+    <Box h='auto' bg={bg} m={{base:5, md:14}} p={{base:4, md:10}}>
       <Stack spacing={4}>
-        <Skeleton h='33px' w='25%' bg='#DBE2F4' />
-        <Skeleton h='18px' w='17%' />
+        <Skeleton h={{base:"20px", md:'33px'}} w='25%' bg='#DBE2F4' />
+        <Skeleton h='18px' w={{base:"90%", md:'17%'}} />
       </Stack>
       <Box mt={10}><Skeleton h='10px' w='60%' /></Box>
       <Box bg={bg} h='300px' mt={10} px={10} pt={2}>

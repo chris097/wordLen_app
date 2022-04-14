@@ -1,5 +1,5 @@
 // eslint default-case: "error"
-const initialState = { word: "" };
+const initialState = { word: "hello" };
 const wordReducer = ( state= initialState, action ) => {
      switch (action.type) {
         case "CHANGEWORD":
