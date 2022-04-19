@@ -25,7 +25,7 @@ const HomeComp = ({bg, data}) => {
                         <Text fontSize={{base:"14px", md:"16px"}}>origin: "early 19th century: variant of earlier hollo ; related to holla.",</Text>
                     </Box>
                     <Box mb="46px" fontSize={{base:"14px", md:"16px"}}>
-                    {word?.meanings?.map((meaning) => meaning.definitions?.map((definition, index) => 
+                    {word?.meanings?.map((meaning, i) => meaning.definitions?.map((definition, index) => 
                         <Text mb={3}>{index+1}. {definition.definition}</Text>
                     ))}
                         <Text color="#8C98AD">sentence: “hello there, Katie!"</Text>
