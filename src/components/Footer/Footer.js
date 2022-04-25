@@ -1,5 +1,6 @@
-import { Box, HStack, Image, Text } from "@chakra-ui/react";
 import React from "react";
+import PropTypes  from "prop-types";
+import { Box, HStack, Image, Text } from "@chakra-ui/react";
 import logo from '../../public/svgs/logo.svg';
 import darkLogo from "../../public/svgs/dark_logo.svg";
 import {BsFacebook, BsTwitter, BsGithub, BsLinkedin} from 'react-icons/bs';
@@ -11,7 +12,7 @@ const FooterComp = ({bgColor, borderColor}) => {
             <Box bgColor={bgColor} pb={16} borderTop={`1px solid ${borderColor}`}>
                 <Box w="full" pos={{base:"relative", md:"absolute"}} mt="92px">
                     <Box w={{base: "80%", md:"30%"}} pos="relative" textAlign="center" mx="auto">
-                        <Text d={{base: "none", md:"block"}} fontSize="96px">Wordlens</Text>
+                        <Text d={{base: "none", md:"block"}} fontSize={{base: "52px", lg:"96px"}}>Wordlens</Text>
                         <UseColorMode 
                             light={<Image mx="auto" mb="10px" d={{base: "block", md:"none"}} src={logo} alt="logo" />}
                             dark={<Image mx="auto" mb="10px" d={{base: "block", md:"none"}} src={darkLogo} alt="logo" />}
@@ -44,7 +45,7 @@ const FooterComp = ({bgColor, borderColor}) => {
                             </svg>
                         </span>
                     </Box>
-                    <Box mt={6} mx={24} d={{base: "none", md:"flex"}} justifyContent="space-between">
+                    <Box mt={6} mx={{base:5, lg:24}} d={{base: "none", md:"flex"}} justifyContent="space-between">
                     <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <mask id="path-1-inside-1_376_18" fill="white">
                         <path fillRule="evenodd" clipRule="evenodd" d="M67.2837 63.3554C67.2837 82.8816 81.354 98.7107 98.7106 98.7107V28C81.354 28.0001 67.2837 43.8292 67.2837 63.3554Z"/>
@@ -94,7 +95,10 @@ const FooterComp = ({bgColor, borderColor}) => {
                         </span>
                     </Box>
                     <Box mt="50.5px" d={{base: "block", md:"flex"}} w="90%" mx="auto" justifyContent="space-between">
-                        <Image d={{base: "none", md:"block"}} src={logo} alt="logo" />
+                        <UseColorMode 
+                            light={<Image d={{base: "none", md:"block"}} src={logo} alt="logo" />}
+                            dark={<Image d={{base: "none", md:"block"}} src={darkLogo} alt="logo" />}
+                        />
                         <HStack spacing={8} justifyContent="center">
                             <BsFacebook />
                             <BsTwitter />
@@ -111,6 +115,11 @@ const FooterComp = ({bgColor, borderColor}) => {
             </Box>
         </React.Fragment>
     )
+}
+
+FooterComp.propTypes={
+    bgColor: PropTypes.node,
+    borderColor: PropTypes.node,
 }
 
 export default FooterComp;

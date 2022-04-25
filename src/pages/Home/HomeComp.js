@@ -1,18 +1,20 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Text, Box} from "@chakra-ui/react";
 
 
-const HomeComp = ({bg, data}) => {
+const HomeComp = ({bg, data, border, words, nouns }) => {
+    // console.log(words?.map(el=>el?.map(e=>e)))
 
     return(
-        <Box mb="114.5px" h="auto" border="1px solid #E5E5E5">
+        <Box mb="114.5px" h="auto" border={border}>
             <Box bg={bg} my="44px" mx={{base:"20px", md:"74px"}} px={{base:5, md:10}} pb={4}>
                 {/*  */}
-                {data?.map((word, index) => (
+                {data?.map((word, i) => (
                     <>
-                    <Box key={index}>
+                    <Box key={i}>
                         <Text textTransform="capitalize" fontSize={{base:"34px", md:"64px"}}>{word?.word}</Text>
-                        <Box d="flex" alignItems="center">
+                        <Box d="flex" alignItems="center" mb={10}>
                             <Text>/həˈləʊ/</Text>
                             <Box ml="18px" cursor="pointer">
                                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -21,16 +23,27 @@ const HomeComp = ({bg, data}) => {
                             </Box>
                         </Box>
                     </Box>
-                    <Box mt="31px" mb="55px">
-                        <Text fontSize={{base:"14px", md:"16px"}}>origin: "early 19th century: variant of earlier hollo ; related to holla.",</Text>
-                    </Box>
-                    <Box mb="46px" fontSize={{base:"14px", md:"16px"}}>
-                    {word?.meanings?.map((meaning, i) => meaning.definitions?.map((definition, index) => 
-                        <Text mb={3}>{index+1}. {definition.definition}</Text>
-                    ))}
-                        <Text color="#8C98AD">sentence: “hello there, Katie!"</Text>
-                        <Text fontStyle="italic">Synonyms: "{word?.meanings?.map(meaning => meaning.synonyms)}"</Text>
-                    </Box>
+                    {/* <Box mt="31px" mb="30px">
+                        <Text fontSize={{base:"14px", md:"16px"}}>origin: ${`early 19th century: variant of earlier hollo ; related to holla.`}</Text>
+                    </Box> */}
+                    <Text fontSize={{base:"14px", md:"16px"}} my={3}>Part Of Speech: Verb</Text>
+                    {words?.map(meanings => meanings?.map(meaning => meaning?.definitions?.map((definition,i) => (   
+                        <Text key={i} mb={3}>{`${i+1}. ${definition.definition}`}</Text>
+                    ))))}
+                    <Text>Synonyms:</Text>
+                    {words?.map(meanings => meanings?.map((meaning, el) => (  
+                       <Text textTransform="capitalize" fontStyle="italic" key={el}>{`${meaning.synonyms}` ? `${meaning.synonyms}` : `${"unavailabe"}`}</Text>
+                    )))}
+
+                    <Text fontSize={{base:"14px", md:"16px"}} mb={3} mt={10}>Part Of Speech: Noun</Text>
+                    {nouns?.map(meanings => meanings?.map((meaning)=> meaning?.definitions?.map((definition,i) => (   
+                        <Text key={i} mb={3}>{`${i+1}. ${definition.definition}`}</Text>
+                    ))))}
+                    <Text>Synonyms:</Text>
+                    {nouns?.map(meanings => meanings?.map((meaning, el) => (  
+                       <Text textTransform="capitalize" fontStyle="italic" key={el}>{meaning.synonyms.join(", ")}.</Text>
+                    )))}
+                    
                 </>
                 ))
                 }
@@ -39,5 +52,14 @@ const HomeComp = ({bg, data}) => {
         </Box>
     )
 };
+
+HomeComp.propTypes={
+    bg: PropTypes.node,
+    data: PropTypes.array,
+    words: PropTypes.array,
+    nouns: PropTypes.array,
+    interjections: PropTypes.array,
+    border: PropTypes.node
+}
 
 export default HomeComp;

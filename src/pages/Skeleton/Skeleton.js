@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import { Box, Skeleton, Stack } from '@chakra-ui/react';
 
 const SkeletonComp = ({bg}) => {
@@ -23,6 +24,10 @@ const SkeletonComp = ({bg}) => {
       </Box>
     </Box>
   )
+}
+
+SkeletonComp.propTypes={
+  bg: PropTypes.node,
 }
 
 export default SkeletonComp;

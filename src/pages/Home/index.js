@@ -1,5 +1,5 @@
+import React, { useState, useEffect } from "react";
 import { Box } from "@chakra-ui/react";
-import React, { useState } from "react";
 import Header from "../../components/Header";
 import { UseColorMode } from "../../useDarkMode";
 import NotFound from "../NotFound";
@@ -14,9 +14,21 @@ import { useSelector } from "react-redux";
 const Home = () => {
 
     const initialState = useSelector((state) => state.wordReducer);
-    const {data, isLoading, isError} = useFetchApi(initialState.word)
-    const [word, setWord] = useState("")
-    // console.log(data?.map(word => word?.meanings?.map(meaning => meaning.definitions?.map(definition => definition.definition))))
+    const {data, isLoading, isError} = useFetchApi(initialState.word);
+    const [word, setWord] = useState("");
+    const [allWords, setallWords] = useState([]);
+    const [isNoun, setNoun] = useState([]);
+    
+   async function getWords () {
+        const fetchWord = await data?.map(el=>el?.meanings?.filter(meaning=>meaning.partOfSpeech==="verb"));
+        setallWords(fetchWord);
+        const fetchNoun = await data?.map(el=>el?.meanings?.filter(meaning=>meaning.partOfSpeech==="noun"));
+        setNoun(fetchNoun);
+    }
+
+    useEffect(() => {
+        getWords()
+    },[data]);
 
     return(
         <React.Fragment>
@@ -32,8 +44,8 @@ const Home = () => {
                  {isLoading ? <Skeleton /> : (isError ? <NotFound /> : 
                     <Box mt="60px">
                         <UseColorMode 
-                            light={<HomeComp data={data} bg="#FCFCFC" />} 
-                            dark={<HomeComp data={data} bg="#0D1726" />} 
+                            light={<HomeComp data={data} words={allWords} nouns={isNoun} bg="#FCFCFC" border="1px solid #E5E5E5" />} 
+                            dark={<HomeComp data={data} words={allWords} nouns={isNoun} bg="#0D1726" border="1px solid #8C98AD" />} 
                         />
                     </Box>
                  )}

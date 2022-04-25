@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { Box, Button, Input, Text } from "@chakra-ui/react";
 import { BiSearch } from 'react-icons/bi';
 import { useDispatch } from "react-redux";
@@ -10,18 +11,16 @@ const Banner = ({textColor, searchColor, borderColor, placeholderColor, word, se
 
     const dispatch = useDispatch();
     
-    const [searchError, setsearchError] = useState("")
+    const [searchError, setsearchError] = useState("");
     
     const handleSubmit = (e) => {
         e.preventDefault()
         if(validator.isEmpty(word)){
-            setsearchError("Search input is required.")
+            return setsearchError("Search input is required.")
         }else{
             return dispatch(changeWord(word))
         }
-    }
-
-    console.log(searchError)
+    };
 
     return(
         <>
@@ -39,6 +38,15 @@ const Banner = ({textColor, searchColor, borderColor, placeholderColor, word, se
             </form>
         </>
     )
+}
+
+Banner.propTypes={
+    textColor: PropTypes.node,
+    searchColor: PropTypes.node,
+    borderColor: PropTypes.node,
+    placeholderColor: PropTypes.node,
+    word: PropTypes.node,
+    setWord: PropTypes.func,
 }
 
 export default Banner;
